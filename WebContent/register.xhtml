@@ -1,8 +1,44 @@
 <ui:composition template="./template/mainTemplate.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core>
 
    <ui:define name="pageContent">
    		<h1>REGISTER</h1>
+   		
+   		<f:view>
+   		
+			<body>
+			
+				<h1 align="center">Login screen</h1>    
+				      
+				<h:form id="connexionForm">
+				
+					Login:
+					<h:inputText id="login" value="#{loginBean.login}" required="true" p:required="true"
+							requiredMessage="Le login est obligatoire"
+							validatorMessage="Le login doit etre une adresse email"
+							validator="#{loginBean.validateLogin}" />
+				 	<h:message for="login" styleClass="errorBlock" />
+				 	<br/>
+				 	
+					Password:
+					<h:inputSecret id="password" value="#{loginBean.password}" required="true" p:required="true"
+							requiredMessage="Le mot de passe est obligatoire"
+							validatorMessage="Votre mot de passe doit contenir entre 4 et 8 caracteres non speciaux"
+							validator="#{loginBean.validatePassword}" />
+				 	<h:message for="password" styleClass="errorBlock" />
+				 	<br/>
+				 	
+					<h:commandButton action="#{loginBean.returnAction}" value="Connect" />
+					<h:commandButton action="#{loginBean.cancelAction}" value="Cancel" immediate="true"/> <!-- on met immediate pour eviter de verifier les champs -->
+					
+				</h:form>
+				
+			</body>
+			
+		</f:view>
+		
    </ui:define>
 </ui:composition>

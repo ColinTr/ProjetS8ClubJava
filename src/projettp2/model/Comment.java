@@ -1,4 +1,4 @@
-package projettp2.modele;
+package projettp2.model;
 
 import java.util.Date;
 import java.util.List;

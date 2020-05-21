@@ -1,4 +1,4 @@
-package projettp2.controleur;
+package projettp2.model.dao;
 
 public class CommentDAO {
 
