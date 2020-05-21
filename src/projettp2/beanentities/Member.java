@@ -1,4 +1,4 @@
-package projettp2.model;
+package projettp2.beanentities;
 
 import java.util.ArrayList;
 import java.util.List;

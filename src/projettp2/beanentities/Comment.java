@@ -1,4 +1,4 @@
-package projettp2.model;
+package projettp2.beanentities;
 
 import java.util.Date;
 import java.util.List;

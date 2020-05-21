@@ -1,4 +1,4 @@
-package projettp2.model.beans;
+package projettp2.model.managedbeans;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
 
 
 @Named /* ("loginBean") */
-@SessionScoped
+@SessionScoped // On précise que la portée du bean est limitée à la session en cours
 public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = -5433850275008415405L;
