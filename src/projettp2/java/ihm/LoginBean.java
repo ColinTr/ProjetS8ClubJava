@@ -77,7 +77,7 @@ public class LoginBean implements Serializable {
     public String validateLoginCredentials() {
         String validationResult = "";
         
-        EntityManager emf = Persistence.createEntityManagerFactory("Classic").createEntityManager();
+        EntityManager emf = Persistence.createEntityManagerFactory("modeNone").createEntityManager();
         
         try {
             
