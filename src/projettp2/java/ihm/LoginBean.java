@@ -55,7 +55,7 @@ public class LoginBean implements Serializable {
     
     public void validateLogin(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     	String inputValue = (String) value;
-    	Pattern pattern = Pattern.compile("^[\\w.+-]+@[\\w.+-]+\\.[a-z]{2,}$");
+    	Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     	if( !pattern.matcher(inputValue).matches()) {
     		FacesMessage msg = new FacesMessage("Le login doit être une adresse email");
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -76,13 +76,15 @@ public class LoginBean implements Serializable {
     
     public String validateLoginCredentials() {
         String validationResult = "";
-        //EntityManager entityMgrObj = Persistence.createEntityManagerFactory("Classic").createEntityManager();
+        
+        EntityManager emf = Persistence.createEntityManagerFactory("Classic").createEntityManager();
         
         try {
             
         } catch(Exception exObj) {
             FacesContext.getCurrentInstance().addMessage("loginForm:loginName", new FacesMessage("Username Or Password Is Incorrect"));         
         }
+        
         return validationResult;
     }
     
