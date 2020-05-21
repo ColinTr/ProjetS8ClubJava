@@ -1,4 +1,4 @@
-package projettp2.java.ihm;
+package projettp2.model.beans;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
