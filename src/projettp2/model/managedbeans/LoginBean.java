@@ -73,4 +73,17 @@ public class LoginBean implements Serializable {
     	}
     }
     
+    public String logIn()
+    {
+    	System.out.println("DANS LOG IN");
+    	return "login";
+    }
+    
+    public String logOut()
+    {
+    	System.out.println("DANS LOG OUT");
+    	login = "";
+    	password = "";
+    	return "logout";
+    }
 }

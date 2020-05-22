@@ -1,6 +1,7 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:ui="http://java.sun.com/jsf/facelets">
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html">
 	
 	    <nav class="navbar navbar-inverse navbar-fixed-top">
 	        <div class="container-fluid">
@@ -22,12 +23,13 @@
 	            	<li><a href="register.xhtml">Join Us</a></li>
 	            </ul>
 					
-	             <form class="navbar-form navbar-right">
-	             <a href="login.xhtml">
-	             	<button type="button" class="btn primary-btn">Sign in</button>
-	             </a>
-	                 
-	             </form>
+	             <h:form class="navbar-form navbar-right">
+	             	
+	             	<h:outputLabel value="&#160;" rendered="#{oginBean.login!=''}">#{loginBean.login }</h:outputLabel>
+	            	<h:commandButton class="btn primary-btn" value="Sign in" action="#{loginBean.logIn}" rendered="#{loginBean.login==''}"/>
+	            	<h:commandButton class="btn btn-danger" value="Log out" action="#{loginBean.logOut}" rendered="#{loginBean.login!=''}"/>
+	            	
+	             </h:form>
 	            </div><!--/.navbar-collapse -->
 	        </div>
 	    </nav>
