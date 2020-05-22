@@ -8,7 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import projettp2.model.services.MemberService;
@@ -78,7 +77,7 @@ public class LoginBean implements Serializable {
     public String validateLoginCredentials() {
         String validationResult = "";
 
-        //memberService.getmembers();
+        MemberService.getmembers();
         
         try {
             

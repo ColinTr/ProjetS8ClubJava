@@ -6,7 +6,7 @@
              
     <persistence-unit name="modeNone" transaction-type="JTA">
     
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
         <class>projettp2.modele.Comment</class> 
         <class>projettp2.modele.Member</class> 
