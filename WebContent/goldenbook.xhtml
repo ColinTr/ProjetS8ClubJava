@@ -1,8 +1,29 @@
 <ui:composition template="./template/mainTemplate.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
    <ui:define name="pageContent">
    		<h1>GOLDEN BOOK</h1>
+   		
+   		<h:dataTable value="#{commentBean.comments}" var="comment" style="width: 60%; margin: auto;">
+			<h:column>
+				<f:facet name="header">First name</f:facet>
+				#{comment.member.firstName} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Last name</f:facet>
+				#{comment.member.lastName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Comment</f:facet>
+				#{comment.text}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Date</f:facet>
+				#{comment.commentDate}
+			</h:column>
+		</h:dataTable>
+   		
    </ui:define>
 </ui:composition>

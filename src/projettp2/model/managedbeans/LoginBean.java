@@ -18,47 +18,34 @@ import projettp2.model.services.MemberService;
 public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = -5433850275008415405L;
-
-    private static String loginUserConnected = null;
     
     private String login = "";
     private String password = "";
     
     public String getLogin() {
-        System.out.println( "in getLogin" );
         return login;
     }
 
     public void setLogin(String login) {
-        System.out.println( "in setLogin with " + login );
         this.login = login;
     }
     
     public String getPassword() {
-        System.out.println( "in getPassword" );
         return password;
     }
     
     public void setPassword(String password) {
-        System.out.println( "in setPassword with " + password );
         this.password = password;
     }
-    
-    public static String getLoginUserConnected(){
-    	return LoginBean.loginUserConnected;
-    }
-    
-    public String returnAction() {
+
+	public String returnAction() {
     	String validationResult = "";
 
         boolean valid = MemberService.validateMember(login, password);
-        if(valid)
-        {
+        if(valid) {
         	validationResult = "success";
-        	loginUserConnected = login;
         }
-        else
-        {
+        else {
         	validationResult = "failure";
         }
         
@@ -79,8 +66,6 @@ public class LoginBean implements Serializable {
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}
-    	
-
     }
     
     public void validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -91,7 +76,6 @@ public class LoginBean implements Serializable {
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}
-    	
     }
     
 }
