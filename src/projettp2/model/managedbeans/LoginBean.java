@@ -19,6 +19,8 @@ public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = -5433850275008415405L;
 
+    private static String loginUserConnected = null;
+    
     private String login = "";
     private String password = "";
     
@@ -42,6 +44,10 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
     
+    public static String getLoginUserConnected(){
+    	return LoginBean.loginUserConnected;
+    }
+    
     public String returnAction() {
         System.out.println( "in returnAction");
         return password.equals( "007" ) ? "success" : "failure";
@@ -61,9 +67,11 @@ public class LoginBean implements Serializable {
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}
+    	
+
     }
     
-    public void validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    public String validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     	String inputValue = (String) value;
     	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,8}$");
     	if( !pattern.matcher(inputValue).matches()) {
@@ -71,17 +79,25 @@ public class LoginBean implements Serializable {
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}
+    	
+    	return validateLoginCredentials();
     }
     
     public String validateLoginCredentials() {
-        String validationResult = "";
+    	String validationResult = "";
 
-        MemberService.getMembers();
-        
-        try {
-            
-        } catch(Exception exObj) {
-            FacesContext.getCurrentInstance().addMessage("loginForm:loginName", new FacesMessage("Username Or Password Is Incorrect"));         
+        boolean valid = MemberService.validateMember(login, password);
+        System.out.print("VALID = " + valid);
+        if(valid)
+        {
+        	validationResult = "success";
+        	loginUserConnected = login;
+        }
+        else
+        {
+        	
+        	FacesContext.getCurrentInstance().addMessage("loginForm:loginName", new FacesMessage("Username Or Password Is Incorrect"));
+        	validationResult = "failure";
         }
         
         return validationResult;

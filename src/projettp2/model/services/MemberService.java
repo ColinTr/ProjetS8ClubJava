@@ -27,6 +27,17 @@ public class MemberService {
 		 return true;
 	 }
 	 
+	 public static boolean validateMember(String login, String password) {
+		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
+		 List<Member> member =  em.createQuery("SELECT m from Member as m WHERE email = :login AND password = :password", Member.class).setParameter("login", login).setParameter("password", password).getResultList();
+		 
+		 if(!member.isEmpty())
+			 return true;
+		 
+		 return false;
+	 
+	 }
+	 
 	 public static List<Member> getMembers() {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
 		 return em.createQuery("SELECT m from Member as m", Member.class).getResultList();
