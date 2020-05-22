@@ -49,8 +49,20 @@ public class LoginBean implements Serializable {
     }
     
     public String returnAction() {
-        System.out.println( "in returnAction");
-        return password.equals( "007" ) ? "success" : "failure";
+    	String validationResult = "";
+
+        boolean valid = MemberService.validateMember(login, password);
+        if(valid)
+        {
+        	validationResult = "success";
+        	loginUserConnected = login;
+        }
+        else
+        {
+        	validationResult = "failure";
+        }
+        
+        return validationResult;
     }
     
     public String cancelAction() {
@@ -71,7 +83,7 @@ public class LoginBean implements Serializable {
 
     }
     
-    public String validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    public void validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     	String inputValue = (String) value;
     	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,8}$");
     	if( !pattern.matcher(inputValue).matches()) {
@@ -80,27 +92,6 @@ public class LoginBean implements Serializable {
     		throw new ValidatorException(msg);
     	}
     	
-    	return validateLoginCredentials();
-    }
-    
-    public String validateLoginCredentials() {
-    	String validationResult = "";
-
-        boolean valid = MemberService.validateMember(login, password);
-        System.out.print("VALID = " + valid);
-        if(valid)
-        {
-        	validationResult = "success";
-        	loginUserConnected = login;
-        }
-        else
-        {
-        	
-        	FacesContext.getCurrentInstance().addMessage("loginForm:loginName", new FacesMessage("Username Or Password Is Incorrect"));
-        	validationResult = "failure";
-        }
-        
-        return validationResult;
     }
     
 }
