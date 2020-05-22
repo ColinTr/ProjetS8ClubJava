@@ -13,36 +13,42 @@
 					<h:form id="registerForm">
 					
 						First name
-						<h:inputText id="fname" class="form-control" p:placeholder="Jean" required="true" p:required="true"
-								requiredMessage="First name is required"/>
-					 	<h:message for="fname" styleClass="errorBlock" />
+						<h:inputText id="firstName" class="form-control" p:placeholder="Jean" value="#{registerBean.firstName}" required="true" p:required="true"
+								requiredMessage="First name is required" />
+					 	<h:message for="firstName" styleClass="errorBlock" />
 					 	<br/>
 					 	
 						Last name
-						<h:inputText id="lname" class="form-control" p:placeholder="Dupont" required="true" p:required="true"
-								requiredMessage="Last name is required"/>
-					 	<h:message for="lname" styleClass="errorBlock" />
+						<h:inputText id="lastName" class="form-control" p:placeholder="Dupont" value="#{registerBean.lastName}" required="true" p:required="true"
+								requiredMessage="Last name is required" />
+					 	<h:message for="lastName" styleClass="errorBlock" />
 					 	<br/>
 					 	
 					 	Description
-					 	<h:inputTextarea class="form-control" rows="3" p:placeholder="A little description about you..." />
+					 	<h:inputTextarea id="description" class="form-control" rows="3" value="#{registerBean.description}" p:placeholder="A little description about you..." />
+					 	<br/>
+					 	
+					 	Address
+					 	<h:inputTextarea id="address" class="form-control" rows="1" value="#{registerBean.address}" p:placeholder="Address" />
 					 	<br/>
 					 	
 					 	Email
-						<h:inputText id="email" class="form-control" p:placeholder="example@mail.com" required="true" p:required="true"
+						<h:inputText id="email" class="form-control" p:placeholder="example@mail.com" value="#{registerBean.email}" required="true" p:required="true"
 								requiredMessage="Email is required"
-								validatorMessage="Email no valid"/>
+								validatorMessage="Invalid email"
+								validator="#{loginBean.validateLogin}" />
 					 	<h:message for="email" styleClass="errorBlock" />
 					 	<br/>
 					 	
 					 	Password
-						<h:inputSecret id="password"  class="form-control" p:placeholder="password" required="true" p:required="true"
+						<h:inputSecret id="password"  class="form-control" p:placeholder="password" value="#{registerBean.password}" required="true" p:required="true"
 								requiredMessage="Password is required"
-								validatorMessage="Your password must contaon between 4 and 8 no special characters"/>
+								validatorMessage="Your password must contaon between 4 and 8 no special characters"
+								validator="#{loginBean.validatePassword}" />
 					 	<h:message for="password" styleClass="errorBlock" />
 					 	<br/>
 					 	
-						<h:commandButton class="btn btn-primary" value="Subscribe" />
+						<h:commandButton class="btn btn-primary" action="#{registerBean.returnAction}" value="Register" />
 						
 					</h:form>
 				</div>

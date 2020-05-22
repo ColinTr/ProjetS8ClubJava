@@ -10,8 +10,8 @@ import javax.persistence.Persistence;
 @Named
 @SessionScoped
 public class EntityManagerConfiguration implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = -3842194485299231231L;
 	
 	private static EntityManagerFactory emf;
 	

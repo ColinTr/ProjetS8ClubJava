@@ -8,12 +8,26 @@ import projettp2.java.EntityManagerConfiguration;
 
 public class MemberService {
 	 
-	 public static void createNewMember() {
+	 public static boolean createNewMember(Member newMember) {
 		 EntityManager em = EntityManagerConfiguration.getEntityManagerFactory().createEntityManager();
-		 em.persist(new Member());
+		 
+		 if (!em.contains(newMember)){
+			 em.getTransaction().begin();
+	            try{
+	            	em.persist(newMember);
+	            	em.getTransaction().commit();
+	            } catch (Exception e){
+	                e.printStackTrace();
+	                em.getTransaction().rollback();
+	                return false;
+	            }
+	        }
+		 
+		 em.persist(newMember);
+		 return true;
 	 }
 	 
-	 public static List<Member> getmembers() {
+	 public static List<Member> getMembers() {
 		 EntityManager em = EntityManagerConfiguration.getEntityManagerFactory().createEntityManager();
 		 return em.createQuery("SELECT m from Member as m", Member.class).getResultList();
 	 }

@@ -77,7 +77,7 @@ public class LoginBean implements Serializable {
     public String validateLoginCredentials() {
         String validationResult = "";
 
-        MemberService.getmembers();
+        MemberService.getMembers();
         
         try {
             
