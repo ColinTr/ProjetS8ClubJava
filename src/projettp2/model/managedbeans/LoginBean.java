@@ -65,7 +65,6 @@ public class LoginBean implements Serializable {
     
     public void validatePassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     	String inputValue = (String) value;
-    	validateLoginCredentials();
     	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,8}$");
     	if( !pattern.matcher(inputValue).matches()) {
     		FacesMessage msg = new FacesMessage("Votre mot de passe doit contenir entre 4 et 8 caractères non spéciaux");
