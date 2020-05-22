@@ -2,14 +2,14 @@ package projettp2.model.managedbeans;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import projettp2.model.beanentities.Member;
 import projettp2.model.services.MemberService;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class RegisterBean implements Serializable {
 	
 	private static final long serialVersionUID = -6388510375993857083L;

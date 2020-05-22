@@ -17,7 +17,6 @@ public class MemberService {
 	            	em.persist(newMember);
 	            	em.getTransaction().commit();
 	            } catch (Exception e){
-	                e.printStackTrace();
 	                em.getTransaction().rollback();
 	                return false;
 	            }

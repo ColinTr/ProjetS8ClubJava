@@ -11,6 +11,7 @@
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
+			<redirect/>
         </navigation-case>
     </navigation-rule>
     
@@ -19,6 +20,7 @@
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/accueil.xhtml</to-view-id>
+			<redirect/>
         </navigation-case>
     </navigation-rule>
 
