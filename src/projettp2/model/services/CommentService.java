@@ -13,5 +13,20 @@ public class CommentService {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
 		 return em.createQuery("SELECT c from Comment as c", Comment.class).getResultList();
 	 }
+
+	public static boolean postNewComment(Comment comment) {
+		EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
+		
+		em.getTransaction().begin();
+		try{
+			em.persist(comment);
+			em.getTransaction().commit();
+		} catch (Exception e){
+			em.getTransaction().rollback();
+			return false;
+		}
+		
+		return true;
+	}
 	
 }

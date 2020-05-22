@@ -1,9 +1,16 @@
 <ui:composition template="./template/mainTemplate.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
    <ui:define name="pageContent">
+   		
+		
+   		<h1>TOP COMMENTS</h1>
+   		
+   		<br />
+   		
    		<h1>GOLDEN BOOK</h1>
    		
    		<h:dataTable value="#{commentBean.comments}" var="comment" style="width: 60%; margin: auto;">
@@ -24,6 +31,15 @@
 				#{comment.commentDate}
 			</h:column>
 		</h:dataTable>
+   		
+   		<br />
+   		
+   		<h1>LEAVE A COMMENT</h1>
+		<h:form id="commentForm">
+		 	<h:inputTextarea id="commentText" class="form-control" rows="3" value="#{commentBean.commentText}" required="true" p:required="true" p:placeholder="Tell us all about your love for cats" />
+		 	<h:commandButton class="btn btn-primary" action="#{commentBean.postCommentAction}" value="Leave a comment" />
+		</h:form>
+   		<br />
    		
    </ui:define>
 </ui:composition>

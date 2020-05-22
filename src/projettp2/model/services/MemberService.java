@@ -9,21 +9,19 @@ import projettp2.java.ApplicationConfiguration;
 public class MemberService {
 	 
 	 public static boolean createNewMember(Member newMember) {
-		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
-		 
-		 if (!em.contains(newMember)){
-			 em.getTransaction().begin();
-	            try{
-	            	em.persist(newMember);
-	            	em.getTransaction().commit();
-	            } catch (Exception e){
-	                em.getTransaction().rollback();
-	                return false;
-	            }
-	        }
-		 
-		 em.persist(newMember);
-		 return true;
+		EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
+		if (!em.contains(newMember)){
+			em.getTransaction().begin();
+			try{
+				em.persist(newMember);
+				em.getTransaction().commit();
+			} catch (Exception e){
+				em.getTransaction().rollback();
+				return false;
+			}
+		}
+
+		return true;
 	 }
 	 
 	 public static boolean validateMember(String login, String password) {
@@ -40,5 +38,10 @@ public class MemberService {
 	 public static List<Member> getMembers() {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
 		 return em.createQuery("SELECT m from Member as m", Member.class).getResultList();
+	 }
+	 
+	 public static Member getMemberFromLogin(String login) {
+		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
+		 return em.createQuery("SELECT m from Member as m WHERE m.email = :login", Member.class).setParameter("login", login).getResultList().get(0);
 	 }
 }

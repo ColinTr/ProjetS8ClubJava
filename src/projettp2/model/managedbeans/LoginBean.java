@@ -39,17 +39,12 @@ public class LoginBean implements Serializable {
     }
 
 	public String returnAction() {
-    	String validationResult = "";
-
-        boolean valid = MemberService.validateMember(login, password);
-        if(valid) {
-        	validationResult = "success";
+        if(MemberService.validateMember(login, password)) {
+        	return "success";
         }
         else {
-        	validationResult = "failure";
+        	return "failure";
         }
-        
-        return validationResult;
     }
     
     public String cancelAction() {
