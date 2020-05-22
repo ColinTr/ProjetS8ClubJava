@@ -52,6 +52,7 @@ public class CommentBean implements Serializable {
 		}
 		
 		if(CommentService.postNewComment(newComment)) {
+			commentText = "";
 			return "success";
 		}
 		else {
