@@ -6,9 +6,19 @@ body {
 .nav a{
 	color : white!important;
 	font-size: 1.2em!important;
-	font-weight: 4000;
+	font-weight: 700;
 }
 
-#test {
-	font-size : 16px;
+.navbar {
+	background-color : pink;
+}
+
+.primary-btn {
+	background-color : black;
+	color : white;
+}
+
+.primary-btn:hover{
+	color : white;
+	font-weight: bold;
 }
