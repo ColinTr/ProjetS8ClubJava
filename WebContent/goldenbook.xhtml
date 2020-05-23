@@ -7,68 +7,64 @@
    <ui:define name="pageContent">
    		
 		
-   		<h1>TOP COMMENTS</h1>
-   		
-   		<h:dataTable value="#{commentBean.topComments}" var="topComment" style="width: 60%; margin: auto;">
+   		<h1>Golden book</h1>
+   		<br />
+   		<h3>Top comments</h3>
+   		<br/>
+   		<h:dataTable value="#{commentBean.topComments}" class="table" var="topComment" style="width: 60%; margin: auto;">
 			<h:column>
-				<f:facet name="header">First name</f:facet>
-				#{topComment.member.firstName} 
-			</h:column>
-			<h:column>
-				<f:facet name="header">Last name</f:facet>
-				#{topComment.member.lastName}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Comment</f:facet>
+				<f:facet name="header"></f:facet>
+				<b style="margin-right: 3px;">#{topComment.member.firstName} #{topComment.member.lastName}</b>
+				<span style="color: grey; margin-right:0.3em;">the</span>
+				<h:outputText style="color:grey;" value="#{topComment.commentDate}" >
+    				<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:outputText>
+				<span style="color: grey; margin-right:0.3em;">at</span>
+				<h:outputText style="color:grey;" value="#{topComment.commentDate}" >
+    				<f:convertDateTime pattern="HH:mm"/>
+				</h:outputText>
+				<br/>
 				#{topComment.text}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Date</f:facet>
-				#{topComment.commentDate}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Likes</f:facet>
-				#{topComment.numberOfLikes}
+				<br/>
+				<h:graphicImage class="fas fa-thumbs-up fa-lg" style="color: salmon;"/>
+				<span style="font-weight: 700;" >#{topComment.numberOfLikes}</span>
 			</h:column>
 		</h:dataTable>
-   		
    		<br />
    		
-   		<h1>GOLDEN BOOK</h1>
-   		
-   		<h:dataTable value="#{commentBean.comments}" var="comment" style="width: 60%; margin: auto;">
+   		<h3>All comments</h3>
+   		<br />
+   		<h:dataTable class="table" value="#{commentBean.comments}" var="comment" style="width: 65%; margin: auto;">
+   			
 			<h:column>
-				<f:facet name="header">First name</f:facet>
-				#{comment.member.firstName} 
-			</h:column>
-			<h:column>
-				<f:facet name="header">Last name</f:facet>
-				#{comment.member.lastName}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Comment</f:facet>
+				<f:facet name="header"></f:facet>
+				<b style="margin-right: 3px;">#{comment.member.firstName} #{comment.member.lastName}</b>
+				<span style="color: grey; margin-right:0.3em;">the</span>
+				<h:outputText style="color:grey;" value="#{comment.commentDate}" >
+    				<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:outputText>
+				<span style="color: grey; margin-right:0.3em;">at</span>
+				<h:outputText style="color:grey;" value="#{comment.commentDate}" >
+    				<f:convertDateTime pattern="HH:mm"/>
+				</h:outputText>
+				<br/>
 				#{comment.text}
 			</h:column>
 			<h:column>
-				<f:facet name="header">Date</f:facet>
-				#{comment.commentDate}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Like</f:facet>
 				<h:form id="likeForm">
-					<h:commandButton value="Like" action="#{commentBean.like(comment.commentId)}" />
+					<h:commandLink action="#{commentBean.like(comment.commentId)}">
+						<h:graphicImage class="far fa-thumbs-up fa-2x" style="color: grey;"/>
+					</h:commandLink>
 				</h:form>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Number of likes</f:facet>
-				#{comment.numberOfLikes}
+				<h:graphicImage rendered="#{false}" class="fas fa-thumbs-up fa-2x" style="color: salmon;"/>
+				<span style="font-weight: 700;">#{comment.numberOfLikes}</span>
 			</h:column>
 		</h:dataTable>
-   		
    		<br />
    		
-   		<h1>LEAVE A COMMENT</h1>
-		<h:form id="commentForm">
+   		<h3>Leave a comment</h3>
+   		
+		<h:form id="commentForm" style="width: 65%; margin: auto;">
 		 	<h:inputTextarea id="commentText" class="form-control" rows="3" value="#{commentBean.commentText}" required="true" p:required="true" p:placeholder="Tell us all about your love for cats" />
 		 	<h:commandButton class="btn btn-primary" action="#{commentBean.postCommentAction}" value="Leave a comment" />
 		</h:form>
