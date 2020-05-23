@@ -16,9 +16,6 @@ import projettp2.model.services.MemberService;
 public class CommentBean implements Serializable {
 
 	private static final long serialVersionUID = -4274251529162542806L;
-
-	private List<Comment> comments;
-	private List<Comment> topComments;
 	
 	private String commentText;
 	
@@ -29,16 +26,12 @@ public class CommentBean implements Serializable {
 		return CommentService.getComments();
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
 	public List<Comment> getTopComments() {
 		return CommentService.getTopComments();
 	}
-
-	public void setTopComments(List<Comment> topComments) {
-		this.topComments = topComments;
+	
+	public boolean isCommentLikedByMember(int idComment, String emailMember) {
+		return CommentService.checkIfCommentIsLikedByMember(idComment, emailMember);
 	}
 
 	public String getCommentText() {
@@ -72,13 +65,26 @@ public class CommentBean implements Serializable {
 	public String like(int idComment) {
 		String connectedUserLogin = loginBean.getConnectedUserLogin();
 		
-		System.out.println("trying to like comment...");
-		
 		if(connectedUserLogin == null || connectedUserLogin.isEmpty()) {
 			return "failure";
 		}
 		
 		if(CommentService.likeComment(idComment, connectedUserLogin)) {
+			return "success";
+		}
+		else {
+			return "failure";
+		}
+	}
+	
+	public String unlike(int idComment) {
+		String connectedUserLogin = loginBean.getConnectedUserLogin();
+		
+		if(connectedUserLogin == null || connectedUserLogin.isEmpty()) {
+			return "failure";
+		}
+		
+		if(CommentService.unlikeComment(idComment, connectedUserLogin)) {
 			return "success";
 		}
 		else {

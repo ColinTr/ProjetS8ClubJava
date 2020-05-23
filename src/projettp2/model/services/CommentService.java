@@ -73,6 +73,24 @@ public class CommentService {
 		return true;
 	}
 	
+	public static boolean checkIfCommentIsLikedByMember(int idComment, String emailMember) {
+		
+		if(emailMember == null || emailMember.isEmpty() || emailMember.equals("")) {
+			return false;
+		}
+		
+		Comment commentToLike = CommentService.getCommentFromId(idComment);
+		
+		boolean value = false;
+		for(Member m : commentToLike.getMembers()) {
+			if(m.getEmail().equals(emailMember)) {
+				value = true;
+			}
+		}
+		
+		return value;
+	}
+	
 	public static boolean likeComment(int idComment, String connectedUserLogin) {
 		EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
 
@@ -95,6 +113,36 @@ public class CommentService {
 			return false;
 		}
 		memberList.add(memberThatLikes);
+		commentToLike.setMembers(memberList);
+
+		em.getTransaction().commit();
+		
+		em.close();
+		return true;
+	}
+
+	public static boolean unlikeComment(int idComment, String connectedUserLogin) {
+		EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
+
+		em.getTransaction().begin();
+		
+		Comment commentToLike = em.find(Comment.class, idComment);
+		em.merge(commentToLike);
+		
+		Member memberThatLikes = em.find(Member.class, connectedUserLogin);
+		em.merge(memberThatLikes);
+
+		if(commentToLike==null || memberThatLikes==null){
+			em.close();
+			return false;
+		}
+
+		List<Member> memberList = commentToLike.getMembers();
+		if(!memberList.contains(memberThatLikes)) {
+			em.close();
+			return false;
+		}
+		memberList.remove(memberThatLikes);
 		commentToLike.setMembers(memberList);
 
 		em.getTransaction().commit();

@@ -51,12 +51,17 @@
 				#{comment.text}
 			</h:column>
 			<h:column>
-				<h:form id="likeForm">
+				<h:form id="likeForm" rendered="#{!(commentBean.isCommentLikedByMember(comment.commentId, loginBean.connectedUserLogin))}">
 					<h:commandLink action="#{commentBean.like(comment.commentId)}">
 						<h:graphicImage class="far fa-thumbs-up fa-2x" style="color: grey;"/>
 					</h:commandLink>
 				</h:form>
-				<h:graphicImage rendered="#{false}" class="fas fa-thumbs-up fa-2x" style="color: salmon;"/>
+				<h:form id="unlikeForm" rendered="#{commentBean.isCommentLikedByMember(comment.commentId, loginBean.connectedUserLogin)}">
+					<h:commandLink action="#{commentBean.unlike(comment.commentId)}">
+						<h:graphicImage class="fas fa-thumbs-up fa-2x" style="color: salmon;"/>
+					</h:commandLink>
+				</h:form>
+				
 				<span style="font-weight: 700;">#{comment.numberOfLikes}</span>
 			</h:column>
 		</h:dataTable>
@@ -66,6 +71,7 @@
    		
 		<h:form id="commentForm" style="width: 65%; margin: auto;">
 		 	<h:inputTextarea id="commentText" class="form-control" rows="3" value="#{commentBean.commentText}" required="true" p:required="true" p:placeholder="Tell us all about your love for cats" />
+   			<br />
 		 	<h:commandButton class="btn btn-primary" action="#{commentBean.postCommentAction}" value="Leave a comment" />
 		</h:form>
    		<br />
