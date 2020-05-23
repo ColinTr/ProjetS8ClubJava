@@ -25,21 +25,24 @@ public class CommentService {
 		
 		List<Comment> allComments = getComments();
 		
-		for(int i =0 ; i < 3;i++)
+		if(!allComments.isEmpty())
 		{
-			int topLikes = 0;
-			Comment topComment = allComments.get(0);
-			for(Comment comment : allComments)
+			for(int i =0 ; i < 3;i++)
 			{
-				if(comment.getNumberOfLikes() > topLikes)
+				int topLikes = 0;
+				Comment topComment = allComments.get(0);
+				for(Comment comment : allComments)
 				{
-					topLikes = comment.getNumberOfLikes();
-					topComment = comment;
+					if(comment.getNumberOfLikes() > topLikes)
+					{
+						topLikes = comment.getNumberOfLikes();
+						topComment = comment;
+					}
 				}
+				
+				topCom.add(topComment);
+				allComments.remove(topComment);
 			}
-			
-			topCom.add(topComment);
-			allComments.remove(topComment);
 		}
 		
 		return topCom;
