@@ -1,5 +1,6 @@
 package projettp2.model.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,33 @@ public class CommentService {
 		 List<Comment> returnList = em.createQuery("SELECT c from Comment as c", Comment.class).getResultList();
 		 em.close();
 		 return returnList;
+	}
+	
+	public static List<Comment> getTopComments(){
+		List<Comment> topCom = new ArrayList<Comment>();
+		
+		System.out.println("GETTING TOP COMMENTS ...");
+		
+		List<Comment> allComments = getComments();
+		
+		for(int i =0 ; i < 3;i++)
+		{
+			int topLikes = 0;
+			Comment topComment = allComments.get(0);
+			for(Comment comment : allComments)
+			{
+				if(comment.getNumberOfLikes() > topLikes)
+				{
+					topLikes = comment.getNumberOfLikes();
+					topComment = comment;
+				}
+			}
+			
+			topCom.add(topComment);
+			allComments.remove(topComment);
+		}
+		
+		return topCom;
 	}
 	
 	public static Comment getCommentFromId(int commentId) {

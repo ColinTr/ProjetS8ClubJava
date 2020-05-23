@@ -18,6 +18,7 @@ public class CommentBean implements Serializable {
 	private static final long serialVersionUID = -4274251529162542806L;
 
 	private List<Comment> comments;
+	private List<Comment> topComments;
 	
 	private String commentText;
 	
@@ -30,6 +31,14 @@ public class CommentBean implements Serializable {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public List<Comment> getTopComments() {
+		return CommentService.getTopComments();
+	}
+
+	public void setTopComments(List<Comment> topComments) {
+		this.topComments = topComments;
 	}
 
 	public String getCommentText() {

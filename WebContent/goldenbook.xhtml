@@ -9,6 +9,29 @@
 		
    		<h1>TOP COMMENTS</h1>
    		
+   		<h:dataTable value="#{commentBean.topComments}" var="topComment" style="width: 60%; margin: auto;">
+			<h:column>
+				<f:facet name="header">First name</f:facet>
+				#{topComment.member.firstName} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Last name</f:facet>
+				#{topComment.member.lastName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Comment</f:facet>
+				#{topComment.text}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Date</f:facet>
+				#{topComment.commentDate}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Likes</f:facet>
+				#{topComment.numberOfLikes}
+			</h:column>
+		</h:dataTable>
+   		
    		<br />
    		
    		<h1>GOLDEN BOOK</h1>
