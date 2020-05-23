@@ -65,14 +65,6 @@ public class CommentService {
 		memberList.add(memberThatLikes);
 		commentToLike.setMembers(memberList);
 
-		List<Comment> likedComments = memberThatLikes.getLikedComments();
-		if(likedComments.contains(commentToLike)) {
-			em.close();
-			return false;
-		}
-		likedComments.add(commentToLike);
-		memberThatLikes.setLikedComments(likedComments);
-
 		em.getTransaction().commit();
 		
 		em.close();

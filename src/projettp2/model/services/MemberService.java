@@ -17,10 +17,12 @@ public class MemberService {
 				em.getTransaction().commit();
 			} catch (Exception e){
 				em.getTransaction().rollback();
+				em.close();
 				return false;
 			}
 		}
 
+		em.close();
 		return true;
 	 }
 	 
@@ -28,20 +30,26 @@ public class MemberService {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
 		 List<Member> member =  em.createQuery("SELECT m from Member as m WHERE email = :login AND password = :password", Member.class).setParameter("login", login).setParameter("password", password).getResultList();
 		 
-		 if(!member.isEmpty())
+		 if(!member.isEmpty()) {
+			 em.close();
 			 return true;
-		 
-		 return false;
-	 
+		 }
+
+		em.close();
+		return false;
 	 }
 	 
 	 public static List<Member> getMembers() {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
-		 return em.createQuery("SELECT m from Member as m", Member.class).getResultList();
+		 List<Member> m = em.createQuery("SELECT m from Member as m", Member.class).getResultList();
+		 em.close();
+		 return m;
 	 }
 	 
 	 public static Member getMemberFromLogin(String login) {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
-		 return em.createQuery("SELECT m from Member as m WHERE m.email = :login", Member.class).setParameter("login", login).getResultList().get(0);
+		 Member m = em.createQuery("SELECT m from Member as m WHERE m.email = :login", Member.class).setParameter("login", login).getResultList().get(0);
+		 em.close();
+		 return m;
 	 }
 }
