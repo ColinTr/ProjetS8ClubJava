@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Comment {
 	
 	private String text;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="LIKES_MESSAGES",
             joinColumns={@JoinColumn(name="COMMENT",
                     referencedColumnName="commentId")},
@@ -38,6 +39,10 @@ public class Comment {
 	public Comment() {
 		super();
 		commentDate = new Date(System.currentTimeMillis());
+	}
+	
+	public int getNumberOfLikes() {
+		return members.size();
 	}
 
 	public int getCommentId() {
