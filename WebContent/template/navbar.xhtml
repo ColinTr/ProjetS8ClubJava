@@ -17,15 +17,15 @@
 					</a>
 	            </div>
 	            <div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-left">
-	            	<li><a href="accueil.xhtml">Home</a></li>
-	            	<li><a href="goldenbook.xhtml">Golden Book</a></li>
-	            	<li><a href="register.xhtml">Join Us</a></li>
+					<ul class="nav navbar-nav">
+	            	<li><h:link outcome="accueil.xhtml" value="Home"/></li>
+	            	<li><h:link outcome="goldenbook.xhtml" value="Golden Book"/></li>
+	            	<li><h:link rendered="#{loginBean.connectedUserLogin==''}" outcome="register.xhtml" value="Join Us"/></li>
 	            </ul>
 					
 	             <h:form class="navbar-form navbar-right">
 	             	
-	             	<h:outputLabel value="&#160;" rendered="#{loginBean.login!=''}">#{loginBean.connectedUserLogin}</h:outputLabel>
+	             	<h:outputLabel style="margin-right:10px;" rendered="#{loginBean.connectedUserLogin!=''}">#{loginBean.connectedUserLogin}</h:outputLabel>
 	            	<h:commandButton class="btn primary-btn" value="Sign in" ajax="false" action="login.xhtml?faces-redirect=true" rendered="#{loginBean.connectedUserLogin == ''}"/>
 	            	<h:commandButton class="btn btn-danger" value="Log out" action="#{loginBean.logOut}" rendered="#{loginBean.connectedUserLogin != ''}"/>
 	            	

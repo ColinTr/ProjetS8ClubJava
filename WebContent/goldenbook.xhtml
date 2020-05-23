@@ -36,7 +36,7 @@
    		
    		<h1>LEAVE A COMMENT</h1>
 		<h:form id="commentForm">
-		 	<h:inputTextarea id="commentText" class="form-control" rows="3" value="#{commentBean.commentText}" required="true" p:required="true" p:placeholder="Tell us all about your love for cats" />
+		 	<h:inputTextarea id="commentText" maxlength="2" class="form-control" rows="3" value="#{commentBean.commentText}" required="true" p:required="true" p:placeholder="Tell us all about your love for cats" />
 		 	<h:commandButton class="btn btn-primary" action="#{commentBean.postCommentAction}" value="Leave a comment" />
 		</h:form>
    		<br />

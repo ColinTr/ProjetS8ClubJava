@@ -13,6 +13,10 @@ body {
 	background-color : pink;
 }
 
+.navbar li:hover{
+	background-color : black;
+}
+
 .primary-btn {
 	background-color : black;
 	color : white;

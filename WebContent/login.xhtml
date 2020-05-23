@@ -17,7 +17,7 @@
 								requiredMessage="Le login est obligatoire"
 								validatorMessage="Le login doit etre une adresse email"
 								validator="#{loginBean.validateLogin}" />
-					 	<h:message for="login" styleClass="errorBlock" />
+					 	<h:message for="login" styleClass="errorBlock" style="color:#E3599B;" />
 					 	<br/>
 					 	
 						Password
@@ -25,7 +25,7 @@
 								requiredMessage="Le mot de passe est obligatoire"
 								validatorMessage="Votre mot de passe doit contenir entre 4 et 8 caracteres non speciaux"
 								validator="#{loginBean.validatePassword}" />
-					 	<h:message for="password" styleClass="errorBlock" />
+					 	<h:message for="password" styleClass="errorBlock" style="color:#E3599B ;" />
 					 	<br/>
 					 	
 						<h:commandButton class="btn btn-primary" action="#{loginBean.returnAction}" value="Login" />

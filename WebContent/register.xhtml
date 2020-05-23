@@ -15,13 +15,13 @@
 						First name
 						<h:inputText id="firstName" class="form-control" p:placeholder="Jean" value="#{registerBean.firstName}" required="true" p:required="true"
 								requiredMessage="First name is required" />
-					 	<h:message for="firstName" styleClass="errorBlock" />
+					 	<h:message for="firstName" styleClass="errorBlock" style="color:#E3599B;" />
 					 	<br/>
 					 	
 						Last name
 						<h:inputText id="lastName" class="form-control" p:placeholder="Dupont" value="#{registerBean.lastName}" required="true" p:required="true"
 								requiredMessage="Last name is required" />
-					 	<h:message for="lastName" styleClass="errorBlock" />
+					 	<h:message for="lastName" styleClass="errorBlock" style="color:#E3599B;" />
 					 	<br/>
 					 	
 					 	Description
@@ -37,18 +37,18 @@
 								requiredMessage="Email is required"
 								validatorMessage="Invalid email"
 								validator="#{loginBean.validateLogin}" />
-					 	<h:message for="email" styleClass="errorBlock" />
+					 	<h:message for="email" styleClass="errorBlock" style="color:#E3599B;"/>
 					 	<br/>
 					 	
 					 	Password
 						<h:inputSecret id="password"  class="form-control" p:placeholder="password" value="#{registerBean.password}" required="true" p:required="true"
 								requiredMessage="Password is required"
-								validatorMessage="Your password must contaon between 4 and 8 no special characters"
+								validatorMessage="Your password must contain between 4 and 8 no special characters"
 								validator="#{loginBean.validatePassword}" />
-					 	<h:message for="password" styleClass="errorBlock" />
+					 	<h:message for="password" styleClass="errorBlock" style="color:#E3599B;"/>
 					 	<br/>
 					 	
-						<h:commandButton class="btn btn-primary" action="#{registerBean.returnAction}" value="Register" />
+						<h:commandButton class="btn btn-primary" action="#{registerBean.returnAction}" value="Register"  />
 						
 					</h:form>
 				</div>
