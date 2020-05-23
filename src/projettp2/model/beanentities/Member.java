@@ -39,6 +39,14 @@ public class Member {
 		address = "unknown";
 	}
 	
+	public List<Comment> getLikedComments() {
+		return likedComments;
+	}
+
+	public void setLikedComments(List<Comment> likedComments) {
+		this.likedComments = likedComments;
+	}
+
 	public String getEmail() {
 		return email;
 	}

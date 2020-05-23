@@ -33,12 +33,10 @@ public class CommentBean implements Serializable {
 	}
 
 	public String getCommentText() {
-		System.out.println("getCommentText ...");
 		return commentText;
 	}
 
 	public void setCommentText(String commentText) {
-		System.out.println("setCommentText ...");
 		this.commentText = commentText;
 	}
 	
@@ -47,8 +45,10 @@ public class CommentBean implements Serializable {
 		
 		newComment.setText(commentText);
 		
-		if(loginBean.getLogin() != null && !loginBean.getConnectedUserLogin().isEmpty()) {
-			newComment.setMember(MemberService.getMemberFromLogin(loginBean.getConnectedUserLogin()));
+		String connectedUserLogin = loginBean.getConnectedUserLogin();
+		
+		if(connectedUserLogin != null && !connectedUserLogin.isEmpty()) {
+			newComment.setMember(MemberService.getMemberFromLogin(connectedUserLogin));
 		}
 		
 		if(CommentService.postNewComment(newComment)) {
@@ -59,4 +59,21 @@ public class CommentBean implements Serializable {
 			return "failure";
 		}
     }
+	
+	public String like(int idComment) {
+		String connectedUserLogin = loginBean.getConnectedUserLogin();
+		
+		System.out.println("trying to like comment...");
+		
+		if(connectedUserLogin == null || connectedUserLogin.isEmpty()) {
+			return "failure";
+		}
+		
+		if(CommentService.likeComment(idComment, connectedUserLogin)) {
+			return "success";
+		}
+		else {
+			return "failure";
+		}
+	}
 }
