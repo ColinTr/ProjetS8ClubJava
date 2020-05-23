@@ -1,6 +1,7 @@
 package projettp2.model.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -24,10 +25,10 @@ public class CommentService {
 		System.out.println("GETTING TOP COMMENTS ...");
 		
 		List<Comment> allComments = getComments();
-		
+		Collections.reverse(allComments);
 		if(!allComments.isEmpty())
 		{
-			for(int i =0 ; i < 3;i++)
+			for(int i =0 ; i < 3 && allComments.size() != 0;i++)
 			{
 				int topLikes = 0;
 				Comment topComment = allComments.get(0);
