@@ -14,16 +14,16 @@
 					
 						Email
 						<h:inputText id="login" class="form-control" p:placeholder="example@mail.com" value="#{loginBean.login}" required="true" p:required="true"
-								requiredMessage="Le login est obligatoire"
-								validatorMessage="Le login doit etre une adresse email"
+								requiredMessage="A login is required"
+								validatorMessage="The login must be an email address"
 								validator="#{loginBean.validateLogin}" />
 					 	<h:message for="login" styleClass="errorBlock" style="color:#E3599B;" />
 					 	<br/>
 					 	
 						Password
 						<h:inputSecret id="password" class="form-control" p:placeholder="password" value="#{loginBean.password}" required="true" p:required="true"
-								requiredMessage="Le mot de passe est obligatoire"
-								validatorMessage="Votre mot de passe doit contenir entre 4 et 8 caracteres non speciaux"
+								requiredMessage="A password is required"
+								validatorMessage="Your password must contain between 4 and 8 non special characters"
 								validator="#{loginBean.validatePassword}" />
 					 	<h:message for="password" styleClass="errorBlock" style="color:#E3599B ;" />
 					 	<br/>
