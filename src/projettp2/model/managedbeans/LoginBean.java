@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
+import projettp2.model.services.CommentService;
 import projettp2.model.services.MemberService;
 
 
@@ -22,6 +23,10 @@ public class LoginBean implements Serializable {
     private String login = "";
     private String password = "";
     private String connectedUserLogin = "";
+    
+    public boolean isUserLoggedIn() {
+		return !(connectedUserLogin.equals("") || connectedUserLogin.isEmpty() || connectedUserLogin==null);
+	}
     
     public String getConnectedUserLogin() {
 		return connectedUserLogin;
