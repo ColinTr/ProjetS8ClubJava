@@ -13,11 +13,6 @@
             <to-view-id>/login.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-        <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -27,25 +22,5 @@
             <to-view-id>/accueil.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/accueil.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/goldenbook.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    
-    
 
 </faces-config>

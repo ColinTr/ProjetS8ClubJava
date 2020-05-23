@@ -25,9 +25,9 @@
 					
 	             <h:form class="navbar-form navbar-right">
 	             	
-	             	<h:outputLabel value="&#160;" rendered="#{oginBean.login!=''}">#{loginBean.login }</h:outputLabel>
-	            	<h:commandButton class="btn primary-btn" value="Sign in" action="#{loginBean.logIn}" rendered="#{loginBean.login==''}"/>
-	            	<h:commandButton class="btn btn-danger" value="Log out" action="#{loginBean.logOut}" rendered="#{loginBean.login!=''}"/>
+	             	<h:outputLabel value="&#160;" rendered="#{loginBean.login!=''}">#{loginBean.connectedUserLogin}</h:outputLabel>
+	            	<h:commandButton class="btn primary-btn" value="Sign in" ajax="false" action="login.xhtml?faces-redirect=true" rendered="#{loginBean.connectedUserLogin == ''}"/>
+	            	<h:commandButton class="btn btn-danger" value="Log out" action="#{loginBean.logOut}" rendered="#{loginBean.connectedUserLogin != ''}"/>
 	            	
 	             </h:form>
 	            </div><!--/.navbar-collapse -->

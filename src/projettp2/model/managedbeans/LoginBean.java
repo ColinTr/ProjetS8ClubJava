@@ -21,8 +21,17 @@ public class LoginBean implements Serializable {
     
     private String login = "";
     private String password = "";
+    private String connectedUserLogin = "";
     
-    public String getLogin() {
+    public String getConnectedUserLogin() {
+		return connectedUserLogin;
+	}
+
+	public void setConnectedUserLogin(String connectedUserLogin) {
+		this.connectedUserLogin = connectedUserLogin;
+	}
+
+	public String getLogin() {
         return login;
     }
 
@@ -40,17 +49,14 @@ public class LoginBean implements Serializable {
 
 	public String returnAction() {
         if(MemberService.validateMember(login, password)) {
+        	connectedUserLogin = login;
+        	login = "";
+        	password = "";
         	return "success";
         }
         else {
         	return "failure";
         }
-    }
-    
-    public String cancelAction() {
-        System.out.println( "in cancelAction");
-        // REDIRIGER VERS UNE AUTRE PAGE ICI
-        return "canceling...";
     }
     
     public void validateLogin(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -73,15 +79,9 @@ public class LoginBean implements Serializable {
     	}
     }
     
-    public String logIn()
-    {
-    	System.out.println("DANS LOG IN");
-    	return "login";
-    }
-    
     public String logOut()
     {
-    	System.out.println("DANS LOG OUT");
+    	connectedUserLogin = "";
     	login = "";
     	password = "";
     	return "logout";

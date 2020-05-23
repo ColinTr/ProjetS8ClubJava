@@ -49,6 +49,9 @@ public class Comment {
 	}
 
 	public Member getMember() {
+		if(member == null) {
+			return new Member();
+		}
 		return member;
 	}
 

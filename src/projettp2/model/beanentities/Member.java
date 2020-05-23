@@ -34,8 +34,8 @@ public class Member {
 		super();
 		email = "unknown";
 		password = "unknown";
-		lastName = "unknown";
-		firstName = "unknown";
+		lastName = "";
+		firstName = "Anonymous";
 		address = "unknown";
 	}
 	

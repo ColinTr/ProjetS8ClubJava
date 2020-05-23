@@ -22,7 +22,7 @@ public class CommentBean implements Serializable {
 	private String commentText;
 	
 	@Inject
-	LoginBean lb;
+	private LoginBean loginBean;
 
 	public List<Comment> getComments() {
 		return CommentService.getComments();
@@ -47,8 +47,8 @@ public class CommentBean implements Serializable {
 		
 		newComment.setText(commentText);
 		
-		if(lb.getLogin() != null && !lb.getLogin().isEmpty()) {
-			newComment.setMember(MemberService.getMemberFromLogin(lb.getLogin()));
+		if(loginBean.getLogin() != null && !loginBean.getConnectedUserLogin().isEmpty()) {
+			newComment.setMember(MemberService.getMemberFromLogin(loginBean.getConnectedUserLogin()));
 		}
 		
 		if(CommentService.postNewComment(newComment)) {
