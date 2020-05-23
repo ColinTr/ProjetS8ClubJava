@@ -1,1 +1,1 @@
-Le projet de java
+Le projet de java.
