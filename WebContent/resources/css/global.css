@@ -31,3 +31,28 @@ body {
 	background-color: pink;
 	color : white;
 }
+
+
+.article hr{
+	border: none;
+    height: 1px;
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+
+.article p{
+	text-align: justify;
+	margin-top: 30px;
+	font-family: 'Open Sans Dark',sans-serif;
+	font-weight: normal;
+	max-width: 1040px;
+	color: black;
+	margin-left: 50px;
+}
+
+.article h2{
+	text-align: left;
+	color: black;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
