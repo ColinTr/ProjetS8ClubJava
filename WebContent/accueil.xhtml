@@ -6,30 +6,9 @@
 
     <ui:define name="pageContent">
     
-        <h2>This is a test subtitle</h2>
+        <h2>Some great articles about cats :</h2>
         
-        <h:dataTable value="#{homeBean.members}" headerClass="table-header" class="table" var="member" style="width: 60%; margin: auto;">
-			<h:column>
-				<f:facet name="header">First name</f:facet>
-				#{member.firstName}
-				<br/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Last name</f:facet>
-				#{member.lastName}
-				<br/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Description</f:facet>
-				#{member.description}
-				<br/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Contact</f:facet>
-				#{member.email}
-				<br/>
-			</h:column>
-		</h:dataTable>
+        D'après le sujet il faut ici décrire l’association et ses activités.
 
     </ui:define>    
 </ui:composition>

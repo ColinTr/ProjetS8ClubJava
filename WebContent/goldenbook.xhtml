@@ -17,23 +17,18 @@
 				<h:graphicImage class="fas fa-crown fa-lg" style="color:gold;"/>
 				<b style="margin-right: 3px;">#{topComment.member.firstName} #{topComment.member.lastName}</b>
 				<span style="color: grey; margin-right:0.3em;">the</span>
-				
 				<h:outputText style="color:grey;" value="#{topComment.commentDate}" >
     				<f:convertDateTime pattern="dd.MM.yyyy"/>
 				</h:outputText>
-				
 				<span style="color: grey; margin-right:0.3em;">at</span>
-				
 				<h:outputText style="color:grey;" value="#{topComment.commentDate}" >
     				<f:convertDateTime pattern="HH:mm"/>
 				</h:outputText>
-				
 				<br/>
-				
 				#{topComment.text}
-				
 				<br/>
-				
+			</h:column>
+			<h:column>
 				<h:form id="likeForm" rendered="#{!(commentBean.isCommentLikedByMember(topComment.commentId, loginBean.connectedUserLogin))}">
 					<h:commandLink action="#{commentBean.like(topComment.commentId)}" disabled="#{!(loginBean.isUserLoggedIn())}">
 						<h:graphicImage class="far fa-thumbs-up fa-lg" style="color: grey;"/>
@@ -45,17 +40,14 @@
 						<h:graphicImage class="fas fa-thumbs-up fa-lg" style="color: salmon;"/>
 					</h:commandLink>
 				</h:form>
-				
 				<span style="font-weight: 700;" >#{topComment.numberOfLikes}</span>
-				
 			</h:column>
 		</h:dataTable>
    		<br />
    		
    		<h3>All comments</h3>
    		<br />
-   		<h:dataTable class="table" value="#{commentBean.comments}" var="comment" style="width: 65%; margin: auto;">
-   			
+   		<h:dataTable class="table" value="#{commentBean.comments}" var="comment" style="width: 60%; margin: auto;">
 			<h:column>
 				<f:facet name="header"></f:facet>
 				<b style="margin-right: 3px;">#{comment.member.firstName} #{comment.member.lastName}</b>
@@ -73,13 +65,13 @@
 			<h:column>
 				<h:form id="likeForm" rendered="#{!(commentBean.isCommentLikedByMember(comment.commentId, loginBean.connectedUserLogin))}">
 					<h:commandLink action="#{commentBean.like(comment.commentId)}"  disabled="#{!(loginBean.isUserLoggedIn())}">
-						<h:graphicImage class="far fa-thumbs-up fa-2x" style="color: grey;"/>
+						<h:graphicImage class="far fa-thumbs-up fa-lg" style="color: grey;"/>
 					</h:commandLink>
 					<h:message for="likeForm" styleClass="errorBlock" style="color:#E3599B ;" />
 				</h:form>
 				<h:form id="unlikeForm" rendered="#{commentBean.isCommentLikedByMember(comment.commentId, loginBean.connectedUserLogin)}">
 					<h:commandLink action="#{commentBean.unlike(comment.commentId)}" disabled="#{!(loginBean.isUserLoggedIn())}">
-						<h:graphicImage class="fas fa-thumbs-up fa-2x" style="color: salmon;"/>
+						<h:graphicImage class="fas fa-thumbs-up fa-lg" style="color: salmon;"/>
 					</h:commandLink>
 				</h:form>
 				

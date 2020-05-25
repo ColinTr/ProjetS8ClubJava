@@ -1,0 +1,35 @@
+<ui:composition template="./template/mainTemplate.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+
+    <ui:define name="pageContent">
+    
+        <h2>Here are the members of our club :</h2>
+        <br />
+        <h:dataTable value="#{homeBean.members}" headerClass="table-header" class="table" var="member" style="width: 60%; margin: auto;">
+			<h:column>
+				<f:facet name="header">First name</f:facet>
+				#{member.firstName}
+				<br/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Last name</f:facet>
+				#{member.lastName}
+				<br/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				#{member.description}
+				<br/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Contact</f:facet>
+				#{member.email}
+				<br/>
+			</h:column>
+		</h:dataTable>
+
+    </ui:define>    
+</ui:composition>

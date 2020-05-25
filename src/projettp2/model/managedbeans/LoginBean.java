@@ -68,7 +68,22 @@ public class LoginBean implements Serializable {
     	String inputValue = (String) value;
     	Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     	if( !pattern.matcher(inputValue).matches()) {
-    		FacesMessage msg = new FacesMessage("Le login doit être une adresse email");
+    		FacesMessage msg = new FacesMessage("The login must be an email adress");
+    		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+    		throw new ValidatorException(msg);
+    	}
+    }
+    
+    public void validateLoginDisponibility(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    	String inputValue = (String) value;
+    	Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    	if( !pattern.matcher(inputValue).matches()) {
+    		FacesMessage msg = new FacesMessage("The login must be an email adress");
+    		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+    		throw new ValidatorException(msg);
+    	}
+    	if( MemberService.getMemberFromLogin(inputValue)!=null) {
+    		FacesMessage msg = new FacesMessage("Email already in use, please use another one");
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}
@@ -78,7 +93,7 @@ public class LoginBean implements Serializable {
     	String inputValue = (String) value;
     	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,8}$");
     	if( !pattern.matcher(inputValue).matches()) {
-    		FacesMessage msg = new FacesMessage("Votre mot de passe doit contenir entre 4 et 8 caractères non spéciaux");
+    		FacesMessage msg = new FacesMessage("Your password must contain between 4 and 8 non special characters");
     		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
     		throw new ValidatorException(msg);
     	}

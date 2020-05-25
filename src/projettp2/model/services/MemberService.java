@@ -48,8 +48,14 @@ public class MemberService {
 	 
 	 public static Member getMemberFromLogin(String login) {
 		 EntityManager em = ApplicationConfiguration.getEntityManagerFactory().createEntityManager();
-		 Member m = em.createQuery("SELECT m from Member as m WHERE m.email = :login", Member.class).setParameter("login", login).getResultList().get(0);
+		 List<Member> ms = em.createQuery("SELECT m from Member as m WHERE m.email = :login", Member.class).setParameter("login", login).getResultList();
 		 em.close();
-		 return m;
+		 if(ms.isEmpty() || ms.size()==0) {
+			 return null;
+		 }
+		 else {
+			 return ms.get(0);
+		 }
+		 
 	 }
 }
